@@ -6,10 +6,13 @@ class Zfetch < Formula
   license "MIT"
   head "https://github.com/WilliamHCarter/zfetch.git", branch: "main"
 
-  depends_on "zig" => "~> 0.13.0"
+  depends_on "zig@0.13"
+  conflicts_with "zig", because: "zfetch requires zig 0.13"
 
   def install
-    system "zig", "build"
+    ENV.prepend_path "PATH", Formula["zig@0.13"].opt_bin
+    system "zig", "version"
+    system Formula["zig@0.13"].opt_bin/"zig", "build"
     bin.install "zig-out/bin/zfetch"
   end
 
