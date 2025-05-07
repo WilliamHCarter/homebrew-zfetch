@@ -7,7 +7,6 @@ class Zfetch < Formula
   head "https://github.com/WilliamHCarter/zfetch.git", branch: "main"
 
   depends_on "zig@0.13"
-  conflicts_with "zig", because: "zfetch requires zig 0.13"
 
   def install
     ENV.prepend_path "PATH", Formula["zig@0.13"].opt_bin
